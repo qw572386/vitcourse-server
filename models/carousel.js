@@ -1,10 +1,9 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const carouseSchema = new Schema({
-    id: {
+    lessonid: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     src: {
         type: String,

@@ -4,20 +4,20 @@ class CarouselService {
         return await CarouselModel.find()
     }
     async addCarousel(params) {
-        const { id, src } = params;
-        const result = await CarouselModel.findOne({id});
+        const { lessonid, src } = params;
+        const result = await CarouselModel.findOne({ lessonid });
         if (result) {
             throw new Error('已存在')
         }
         const carousel = new CarouselModel({
-            id,
+            lessonid,
             src
         });
         await carousel.save();
         return carousel;
     }
     async deleteCarousel(id) {
-        const result = await CarouselModel.findOneAndDelete({ id })
+        const result = await CarouselModel.findOneAndDelete({ _id: id })
         if (!result) {
             throw new Error('删除失败')
         } else {
@@ -25,7 +25,7 @@ class CarouselService {
         }
     }
     async updateCarousel(params) {
-        const result = await CarouselModel.findOneAndUpdate({ id: params.id }, params)
+        const result = await CarouselModel.findOneAndUpdate({ _id: params.id }, params)
         if (!result) {
             throw new Error('修改失败')
         } else {

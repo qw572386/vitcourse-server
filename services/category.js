@@ -6,32 +6,33 @@ class CategoryService {
         for (let i = categorys.length - 1; i >= 0; i--) {
             if (categorys[i].type === '分类') {
                 cate.push({
-                    id: categorys[i]._id,
+                    id: categorys[i].id,
                     name: categorys[i].name,
                     parentid: categorys[i].parentid,
                     type: categorys[i].type,
                     sortnum: categorys[i].sortnum,
                     children: []
                 });
-                categorys.splice(categorys[i], 1);
+                categorys.splice(i, 1);
             }
         }
         for (let i = categorys.length - 1; i >= 0; i--) {
             if (categorys[i].type === '类别') {
-                cate.map(item => {
+                for (let j = 0; j < cate.length; j++) {
+                    const item = cate[j];
                     if (item.id == categorys[i].parentid) {
                         item.children.push({
-                            id: categorys[i]._id,
+                            id: categorys[i].id,
                             name: categorys[i].name,
                             parentid: categorys[i].parentid,
                             type: categorys[i].type,
                             src: categorys[i].src,
                             sortnum: categorys[i].sortnum
                         });
-                        categorys.splice(categorys[i], 1);
-                        return;
+                        categorys.splice(i, 1);
+                        break;
                     }
-                })
+                }
             }
         }
         return cate;
