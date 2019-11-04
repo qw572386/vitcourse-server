@@ -1,7 +1,7 @@
 const CategoryModel = require('../models/category')
 class CategoryService {
     async getCategoryList() {
-        const categorys = await CategoryModel.find();
+        const categorys = await CategoryModel.find().sort({ sortnum: -1 });
         const cate = [];
         for (let i = categorys.length - 1; i >= 0; i--) {
             if (categorys[i].type === '分类') {

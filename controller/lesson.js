@@ -1,17 +1,25 @@
-const carouselService = require('../services/carousel')
+const lessonService = require('../services/lesson')
 const result = require('../utils/result')
-class CarouselControll {
-    async getCarouselList(ctx) {
-        const res = await carouselService.getCarouselList(ctx.request.body);
+class LessonControll {
+    async getLessonList(ctx) {
+        const res = await lessonService.getLessonList(ctx.request.body);
         if (res) {
             ctx.body = result.success(res);
         } else {
             ctx.body = result.failed();
         }
     }
-    async addCarousel(ctx) {
+    async getLessonById(ctx) {
+        const res = await lessonService.getLessonById(ctx.request.params.id);
+        if (res) {
+            ctx.body = result.success(res);
+        } else {
+            ctx.body = result.failed();
+        }
+    }
+    async addLesson(ctx) {
         try {
-            const res = await carouselService.addCarousel(ctx.request.body);
+            const res = await lessonService.addLesson(ctx.request.body);
             if (res) {
                 ctx.body = result.success();
             } else {
@@ -21,9 +29,9 @@ class CarouselControll {
             ctx.body = result.failed(error.message);
         }
     }
-    async deleteCarousel(ctx) {
+    async deleteLesson(ctx) {
         try {
-            const res = await carouselService.deleteCarousel(ctx.params.id)
+            const res = await lessonService.deleteLesson(ctx.params.id)
             if (res) {
                 ctx.body = result.success()
             }
@@ -31,9 +39,9 @@ class CarouselControll {
             ctx.body = result.failed(error.message)
         }
     }
-    async updateCarousel(ctx) {
+    async updateLesson(ctx) {
         try {
-            const res = await carouselService.updateCarousel(ctx.request.body)
+            const res = await lessonService.updateLesson(ctx.request.body)
             if (res) {
                 ctx.body = result.success()
             }
@@ -42,4 +50,4 @@ class CarouselControll {
         }
     }
 }
-module.exports = new CarouselControll()
+module.exports = new LessonControll()
