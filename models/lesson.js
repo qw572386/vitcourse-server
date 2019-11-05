@@ -46,5 +46,8 @@ const lessonSchema = new Schema({
         type: Array,
         default: []
     }
+}, {
+    versionKey: false,
+    timestamps: { createdAt: 'createTime', updatedAt: 'lastEditTime' }
 })
 module.exports = mongoose.model('Lesson', lessonSchema)

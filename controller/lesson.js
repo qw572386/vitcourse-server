@@ -10,7 +10,7 @@ class LessonControll {
         }
     }
     async getLessonById(ctx) {
-        const res = await lessonService.getLessonById(ctx.request.params.id);
+        const res = await lessonService.getLessonById(ctx.params.id);
         if (res) {
             ctx.body = result.success(res);
         } else {

@@ -9,5 +9,7 @@ const tagsSchema = new Schema({
     nickname: {
         type: String
     }
+}, {
+    versionKey: false
 })
 module.exports = mongoose.model('Tags', tagsSchema)

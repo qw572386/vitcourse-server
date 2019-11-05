@@ -20,5 +20,7 @@ const categorySchema = new Schema({
     sortnum: {
         type: Number
     }
+}, {
+    versionKey: false
 })
 module.exports = mongoose.model('Category', categorySchema)

@@ -9,5 +9,7 @@ const carouseSchema = new Schema({
         type: String,
         required: true
     }
+}, {
+    versionKey: false
 })
 module.exports = mongoose.model('Carouse', carouseSchema)

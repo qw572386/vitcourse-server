@@ -6,5 +6,7 @@ const typeSchema = new Schema({
         required: true,
         unique: true
     }
+}, {
+    versionKey: false
 })
 module.exports = mongoose.model('Types', typeSchema)
