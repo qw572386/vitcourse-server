@@ -13,7 +13,7 @@ class LessonService {
             arrCategory = category.split(',');
             params.category = { '$in': arrCategory };
         }
-        return await LessonModel.find(params).skip(pageSize * (pageNo - 1)).limit(pageSize).sort({ createTime: -1 })
+        return await LessonModel.find({ ...params, pageNo: null, pageSize: null }).skip(pageSize * (pageNo - 1)).limit(pageSize).sort({ createTime: -1 })
     }
     async getLessonById(id) {
         const result = await LessonModel.findOne({ _id: id });
